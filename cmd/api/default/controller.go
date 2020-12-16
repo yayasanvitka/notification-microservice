@@ -78,6 +78,11 @@ func Store(app *application.Application) httprouter.Handle {
 			return
 		}
 
+		if t.Phone == nil {
+			server.SendHttpResp(w, "missing field 'phone' from JSON request", 422)
+			return
+		}
+
 		// optional extra check
 		if decoder.More() {
 			server.SendHttpResp(w, "extraneous data after JSON request", 422)

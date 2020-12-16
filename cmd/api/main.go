@@ -43,9 +43,5 @@ func main() {
 		if err := srv.Close(); err != nil {
 			zap.S().Error(err.Error())
 		}
-
-		if err := app.DB.Close(); err != nil {
-			zap.S().Error(err.Error())
-		}
 	})
 }
