@@ -1,4 +1,4 @@
-module whatsapp-microservice
+module notification-microservice
 
 go 1.13
 

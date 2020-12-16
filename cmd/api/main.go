@@ -5,11 +5,11 @@ package main
 import (
 	"github.com/joho/godotenv"
 	"go.uber.org/zap"
-	"whatsapp-microservice/cmd/api/router"
-	"whatsapp-microservice/pkg/application"
-	"whatsapp-microservice/pkg/exithandler"
-	"whatsapp-microservice/pkg/logger"
-	"whatsapp-microservice/pkg/server"
+	"notification-microservice/cmd/api/router"
+	"notification-microservice/pkg/application"
+	"notification-microservice/pkg/exithandler"
+	"notification-microservice/pkg/logger"
+	"notification-microservice/pkg/server"
 )
 
 func main() {

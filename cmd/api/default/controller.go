@@ -8,8 +8,8 @@ import (
 	"io/ioutil"
 	"net/http"
 	"strings"
-	"whatsapp-microservice/pkg/application"
-	"whatsapp-microservice/pkg/server"
+	"notification-microservice/pkg/application"
+	"notification-microservice/pkg/server"
 )
 
 type myJSON struct {
@@ -69,18 +69,23 @@ func Store(app *application.Application) httprouter.Handle {
 		}
 
 		if t.Token == nil {
-			server.SendHttpResp(w, "missing field 'type' from JSON requeest", 422)
+			server.SendHttpResp(w, "missing field 'type' from JSON request", 422)
 			return
 		}
 
 		if t.Message == nil {
-			server.SendHttpResp(w, "missing field 'message' from JSON requeest", 422)
+			server.SendHttpResp(w, "missing field 'message' from JSON request", 422)
 			return
 		}
 
 		// optional extra check
 		if decoder.More() {
-			server.SendHttpResp(w, "extraneous data after JSON requeest", 422)
+			server.SendHttpResp(w, "extraneous data after JSON request", 422)
+			return
+		}
+
+		if len(t.Phone) == 0 {
+			server.SendHttpResp(w, "No Number to Send Message", 422)
 			return
 		}
 
@@ -99,6 +104,7 @@ func Store(app *application.Application) httprouter.Handle {
 		req, err := http.NewRequest("POST", url, bytes.NewBuffer(bytesRepresentation))
 		req.Header.Set("Content-Type", "application/json")
 		req.Header.Set("Authorization", *t.Token)
+		//req.Header.Set("Authorization", "")
 
 		// create http client
 		client := http.Client{}
@@ -116,7 +122,7 @@ func Store(app *application.Application) httprouter.Handle {
 			w.Write(body)
 			zap.S().Error(string(body))
 		} else {
-			server.SendHttpResp(w, "Data Sent", resp.StatusCode)
+			server.SendHttpResp(w, "Message Sent", resp.StatusCode)
 		}
 
 		return

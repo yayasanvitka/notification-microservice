@@ -1,8 +1,8 @@
 package application
 
 import (
-	"whatsapp-microservice/pkg/config"
-	"whatsapp-microservice/pkg/db"
+	"notification-microservice/pkg/config"
+	"notification-microservice/pkg/db"
 )
 
 type Application struct {

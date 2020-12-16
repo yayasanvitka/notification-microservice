@@ -6,13 +6,13 @@ import (
 	"github.com/golang-migrate/migrate/v4/database/mysql"
 	"log"
 	"os"
-	"whatsapp-microservice/pkg/logger"
+	"notification-microservice/pkg/logger"
 
 	"github.com/golang-migrate/migrate/v4"
 	_ "github.com/golang-migrate/migrate/v4/database/mysql"
 	_ "github.com/golang-migrate/migrate/v4/source/file"
 	"github.com/joho/godotenv"
-	"whatsapp-microservice/pkg/config"
+	"notification-microservice/pkg/config"
 )
 
 func main() {

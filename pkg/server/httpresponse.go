@@ -6,8 +6,8 @@ import (
 )
 
 type SimpleHttpResponse struct {
-	Success bool          `json:"success"`
-	Data   DataMessage `json:"data"`
+	Status bool        `json:"status"`
+	Message string `json:"message"`
 }
 
 type DataMessage struct {
@@ -21,10 +21,8 @@ func SendHttpResp(w http.ResponseWriter, messageString string, statusCode int) {
 	}
 
 	jsonResponse := SimpleHttpResponse{
-		Success: requestStatus,
-		Data: DataMessage{
-			Message: messageString,
-		},
+		Status: requestStatus,
+		Message: messageString,
 	}
 
 	response, _ := json.Marshal(jsonResponse)
